@@ -1,15 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+
+export interface Page {
+	url: string
+	title: string
+}
 
 const response = await fetch('https://schoolleaders.thekeysupport.com/api/v2/pages/with-path/');
 const data = await response.json();
+const popularTopics: Page[] = Object.values(data.key_pages)
+const popularArticles: Page[] = Object.values(data.popular_articles)
+
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<h1>Welcome to <span class="text-gradient">{data.title}</span></h1>
 
+		<h2>Popular topics</h2>
+		{popularTopics.map(page => (
+			<li><a href={page.url}>{page.title}</a></li>
+		  ))}
+
+		<h2>Popular articles</h2>
+		{popularArticles.map(page => (
+			<li><a href={page.url}>{page.title}</a></li>
+		  ))}
 	</main>
 </Layout>
 
@@ -17,7 +33,7 @@ const data = await response.json();
 	main {
 		margin: auto;
 		padding: 1.5rem;
-		max-width: 60ch;
+		max-width: 80ch;
 	}
 	h1 {
 		font-size: 3rem;
