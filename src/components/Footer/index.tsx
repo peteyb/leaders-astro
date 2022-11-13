@@ -1,4 +1,4 @@
-import styles from './Footer.module.scss'
+import styles from './footer.module.scss'
 import Container from '../Container'
 
 import IconFacebook from '../../images/icons/social/facebook.svg'
