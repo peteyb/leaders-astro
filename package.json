@@ -12,6 +12,9 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^2.3.3",
-    "astro": "^1.6.7"
+    "@astrojs/vue": "^1.2.1",
+    "astro": "^1.6.7",
+    "camelcase-keys": "^8.0.2",
+    "vue": "^3.2.30"
   }
 }

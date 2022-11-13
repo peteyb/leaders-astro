@@ -1,15 +1,13 @@
 ---
+import camelcaseKeys from "camelcase-keys";
+import type { Page } from '../models/wagtail';
 import Layout from '../layouts/Layout.astro';
-
-export interface Page {
-	url: string
-	title: string
-}
 
 const response = await fetch('https://schoolleaders.thekeysupport.com/api/v2/pages/with-path/');
 const data = await response.json();
-const popularTopics: Page[] = Object.values(data.key_pages)
-const popularArticles: Page[] = Object.values(data.popular_articles)
+const page = camelcaseKeys(data, { deep: true }); // transform from snakecase to camelCase
+const popularTopics: Page[] = Object.values(page.keyPages)
+const popularArticles: Page[] = Object.values(page.popularArticles)
 
 ---
 
